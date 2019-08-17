@@ -3,7 +3,7 @@ import axios from 'axios';
 import LocationCard from './LocationCard'
 
 export default function LocationsList(props) {
-    const [locList, setLocList] = useState();
+    const [locList, setLocList] = useState([]);
 
     useEffect(() => {
         // TODO: Add AJAX/API Request here - must run in `useEffect`
@@ -11,12 +11,14 @@ export default function LocationsList(props) {
         axios
             .get(`https://rickandmortyapi.com/api/location/`)
             .then(res => {
-                setLocList(res.data)
+                setLocList(res.data.results)
             })
             .catch(error => {
                 console.error('Server Error', error);
             })
     }, [locList]);
+
+    console.log(locList);
 
     return (
         <section className="location-list grid-view">

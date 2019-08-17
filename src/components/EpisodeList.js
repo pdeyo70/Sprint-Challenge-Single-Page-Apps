@@ -5,7 +5,7 @@ import EpisodeCard from './EpisodeCard';
 export default function EpisodeList(props) {
     // TODO: Add useState to track data from useEffect
 
-    const [epiList, setEpiList] = useState([{}]);
+    const [epiList, setEpiList] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -14,7 +14,7 @@ export default function EpisodeList(props) {
             //  Important: verify the 2nd `useEffect` parameter: the dependancies array!
             await axios
                 .get(`https://rickandmortyapi.com/api/episode/`)
-                .then(res => setEpiList(res.info))
+                .then(res => setEpiList(res.data.results))
                 .catch(error => console.error('Server Error', error));
         };
         fetchData();

@@ -5,7 +5,7 @@ import CharacterCard from './CharacterCard';
 export default function CharacterList(props) {
   // TODO: Add useState to track data from useEffect
 
-  const [charList, setCharList] = useState();
+  const [charList, setCharList] = useState([]);
 
   useEffect(() => {
     // TODO: Add AJAX/API Request here - must run in `useEffect`
@@ -13,7 +13,7 @@ export default function CharacterList(props) {
     axios
       .get(`https://rickandmortyapi.com/api/character/`)
       .then(res => {
-        setCharList(res.data)})
+        setCharList(res.data.results)})
       .catch(error => {
         console.error('Server Error', error);
       })
